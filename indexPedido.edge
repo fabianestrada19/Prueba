@@ -1,0 +1,45 @@
+{{ style('bulma')}}
+<link rel="stylesheet" href="public/bulma.css">
+<html style="background-color:seagreen">
+    <body>
+        <br>
+        <div style="text-align: center">
+            <a href="../" class="button is-danger is-rounded">Regresar Menu</a>
+            <a href="crearPedido" class="button is-primary is-rounded">Crear Pedido</a>
+        </div> <br>
+
+        <div>
+            <table style="text-align: center" class="table is-bordered is-striped is-narrow is-hoverable container">
+                <tr>
+                    <th style="text-align: center" class="th is-black">ID</th>
+                    <th style="text-align: center" class="th is-black">Fecha</th>
+                    <th style="text-align: center" class="th is-black">Producto</th>
+                    <th style="text-align: center" class="th is-black">Cliente</th>
+                    <th style="text-align: center" class="th is-black">Cantidad</th>
+                    <th style="text-align: center" class="th is-black">Total</th>
+                    <th style="text-align: center" class="th is-black">Entregado</th>
+                    <th class="th is-black"></th>
+                    <th class="th is-black"></th>
+                </tr>
+                @each(pedido in pedidos)
+                    <tr>
+                        <th style="text-align: center" class = "th is-primary has-addons is-centered">{{ pedido.id }}</th>
+                        <th style="text-align: center" class = "th is-danger"> {{ pedido.fecha }} </th>
+                        <th style="text-align: center" class = "th is-warning"> {{ pedido.productos.nombre }} </th>
+                        <th style="text-align: center" class = "th is-success"> {{ pedido.clientes.nombre }} </th>
+                        <th style="text-align: center" class = "th is-link">{{pedido.cantidad}}</th>
+                        <th style="text-align: center" class = "th is-info">{{pedido.total}}</th>
+                        <th style="text-align: center" class = "th is-info">{{pedido.entregado}}</th>
+                        <form action="editarPedido/{{pedido.id}}" method="GET">
+                            <th class="th is-dark"><button type="submit" class="button is-outlined is-primary is-small is-rounded"> Modificar</button></th>
+                        </form>
+                        <form action="indexPedido/{{pedido.id}}" method="GET">
+                            <th class="th is-dark"><button class="button is-danger is-outlined is-small is-rounded"> Eliminar - <a class="delete is-small"></a></button></th>
+                        </form>                            
+                    </tr>
+                @endeach
+            </table>
+        </div>
+
+    </body>
+</html>
